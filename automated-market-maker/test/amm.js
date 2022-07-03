@@ -42,5 +42,7 @@ contract("AMM", (accounts) => {
         expect(ammToken0balanceAfterTransfer).to.equal("1100");
         expect(ammToken1balanceAfterTransfer).to.equal("910");
 
+        const { _reserve0, _reserve1 } = await amm.getReserves.call({ from: user2 });
+        console.log(_reserve0.toString(), _reserve1.toString());
     });
 });

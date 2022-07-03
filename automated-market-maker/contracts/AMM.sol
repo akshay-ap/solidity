@@ -143,4 +143,13 @@ contract AMM {
     function _min(uint256 x, uint256 y) private pure returns (uint256 z) {
         return x <= y ? x : y;
     }
+
+    function getReserves()
+        public
+        view
+        returns (uint256 _reserve0, uint256 _reserve1)
+    {
+        _reserve0 = reserve0;
+        _reserve1 = reserve1;
+    }
 }
