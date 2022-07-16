@@ -3,11 +3,11 @@ pragma solidity ^0.8.15;
 
 contract Vault {
     mapping(address => uint256) private _balances;
-    mapping(address => uint256) private _redeemTimer;
+    mapping(address => uint256) public redeemTimer;
 
     function deposit() external payable {
         _balances[msg.sender] += msg.value;
-        _redeemTimer[msg.sender] = block.timestamp + 1 weeks;
+        redeemTimer[msg.sender] = block.timestamp + 1 weeks;
     }
 
     function withdraw() public {
@@ -17,7 +17,7 @@ contract Vault {
         _balances[msg.sender] = 0;
 
         require(
-            block.timestamp > _redeemTimer[msg.sender],
+            block.timestamp > redeemTimer[msg.sender],
             "Lock time not expired"
         );
 
@@ -27,6 +27,6 @@ contract Vault {
     }
 
     function increaseLockTime(uint256 _secondsToIncrease) public {
-        _redeemTimer[msg.sender] += _secondsToIncrease;
+        redeemTimer[msg.sender] += _secondsToIncrease;
     }
 }
