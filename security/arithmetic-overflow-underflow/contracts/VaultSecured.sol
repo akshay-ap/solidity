@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.15;
 
-contract Vault {
+contract VaultSecured {
     mapping(address => uint256) private _balances;
     mapping(address => uint256) public redeemTimer;
 
@@ -27,8 +27,6 @@ contract Vault {
     }
 
     function increaseLockTime(uint256 _secondsToIncrease) public {
-        unchecked {
-            redeemTimer[msg.sender] += _secondsToIncrease;
-        }
+        redeemTimer[msg.sender] += _secondsToIncrease;
     }
 }

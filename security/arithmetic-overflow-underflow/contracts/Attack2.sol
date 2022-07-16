@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.15;
 
-import "./Vault.sol";
+import "./VaultSecured.sol";
 
-contract Attack {
-    Vault v;
+contract Attack2 {
+    VaultSecured v;
 
     fallback() external payable {}
 
     receive() external payable {}
 
     constructor(address contractAddress) {
-        v = Vault(contractAddress);
+        v = VaultSecured(contractAddress);
     }
 
     function attack() public payable {
